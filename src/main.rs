@@ -1,4 +1,4 @@
-use crate::my_cli::foo::say_hello;
+use crate::my_cli::{foo::say_hello, handler::handle_cli};
 use azure_core::auth::TokenCredential;
 use clap::Parser;
 mod azure;
@@ -18,6 +18,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("args: {:?}", args);
     let args2 = crate::my_cli::Cli::parse();
     println!("args2: {:?}", args2);
+    handle_cli(args2).await;
+    // println!("res1: {:?}", res1);
     // azure::do_stuff().await?;
     open_ai::example().await;
     Ok(())

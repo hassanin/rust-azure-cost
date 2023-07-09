@@ -26,7 +26,10 @@ impl LlmChat for OpenAi {
         res.choices[0].message.content.clone()
     }
 }
-
+pub fn get_chat_service() -> impl LlmChat {
+    let api_key = std::env::var("OPENAI_API_KEY").unwrap();
+    OpenAi::new(&api_key)
+}
 pub async fn example() {
     println!("Hello, world!");
     let client = openai_rust::Client::new(&std::env::var("OPENAI_API_KEY").unwrap());
