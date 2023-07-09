@@ -10,18 +10,39 @@ pub fn hello() {
 }
 
 #[derive(Debug, Parser)]
-pub struct Cli{
+pub struct Cli {
     #[clap(subcommand)]
-    command:Commands
+    command: Commands,
 }
 #[derive(Debug, Subcommand)]
-enum Commands{
-  Free(FreeQuestion)
+enum Commands {
+    Free(FreeQuestion),
+    Analyze(AnalyzeQuestion),
 }
 
 #[derive(Debug, Args)]
 #[command(args_conflicts_with_subcommands = true)]
-struct FreeQuestion{
+struct FreeQuestion {
     #[arg(short, long)]
     question: String,
+}
+
+#[derive(Debug, Args)]
+#[command(args_conflicts_with_subcommands = true)]
+struct AnalyzeQuestion {
+    #[arg(short, long)]
+    question: String,
+    #[clap(subcommand)]
+    data: MyData,
+}
+#[derive(Debug, Args, Clone, Copy)]
+pub struct MyData {
+    #[arg(short, long)]
+    timeDomain: TimeDomain,
+}
+#[derive(Debug, ValueEnum, Copy, Clone)]
+pub enum TimeDomain {
+    Past,
+    Present,
+    Future,
 }
