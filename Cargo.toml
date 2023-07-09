@@ -9,6 +9,6 @@ edition = "2021"
 azure_core = "0.13.0"
 azure_identity = "0.13.0"
 clap = { version = "4.3.11", features = ["derive"] }
+reqwest = "0.11.18"
 tokio = { version = "1", features = ["full"] }
 url = "2.4.0"
-# clap = "3.0.0-beta.2"

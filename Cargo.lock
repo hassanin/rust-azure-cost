@@ -335,6 +335,7 @@ dependencies = [
  "azure_core",
  "azure_identity",
  "clap",
+ "reqwest",
  "tokio",
  "url",
 ]
