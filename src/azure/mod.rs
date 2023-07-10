@@ -6,7 +6,7 @@ mod cost_managment_example;
 use std::env;
 use std::error::Error;
 
-pub async fn do_stuff() -> Result<(), Box<dyn Error>> {
+pub async fn do_stuff() -> Result<String, Box<dyn Error>> {
     let credential = DefaultAzureCredential::default();
     let response = credential.get_token("https://management.azure.com").await?;
 
@@ -59,5 +59,5 @@ pub async fn do_stuff() -> Result<(), Box<dyn Error>> {
     println!("{:?}", response);
     let my_value: serde_json::Value = serde_json::from_str(&response)?;
     println!("{:?}", my_value);
-    Ok(())
+    Ok(response)
 }
